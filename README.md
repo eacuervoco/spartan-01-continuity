@@ -29,6 +29,7 @@ evidencia técnica y decisiones justificables.
 
 Empresa  
 → diagnóstico  
+→ captura de evidencia técnica  
 → evaluación de recursos  
 → organización documental  
 → pruebas  
@@ -39,6 +40,7 @@ Empresa
 ## Capacidades previstas para v1.0
 
 - diagnóstico tecnológico;
+- recolección de evidencia técnica de hardware y sistema operativo;
 - gestión de documentación técnica;
 - consulta mediante IA y RAG;
 - evaluación de alternativas local, cloud e híbrida;
@@ -46,7 +48,7 @@ Empresa
 
 ## Enfoque de ingeniería
 
-Spartan #01 se desarrolla utilizando:
+Spartan #01 se desarrolla utilizando progresivamente:
 
 - Python;
 - FastAPI;
@@ -58,15 +60,44 @@ Spartan #01 se desarrolla utilizando:
 - IA local;
 - RAG;
 - tool calling;
-- agente acotado;
+- un agente acotado;
 - AWS como entorno de aprendizaje y comparación.
 
 Estas tecnologías se incorporan únicamente cuando soportan un requisito,
 reducen un riesgo o permiten demostrar una mejora medible.
 
+## Technical Assessment
+
+ContinuitY incorpora un mecanismo inicial de recolección de evidencia técnica
+sin requerir acceso remoto al equipo del cliente.
+
+El cliente recibe instrucciones compatibles con el sistema operativo
+soportado, ejecuta localmente los comandos suministrados y genera:
+
+`ContinuitY_assessment.txt`
+
+El archivo puede ser revisado por el cliente antes de ser entregado y se
+utiliza como evidencia técnica para el proceso de diagnóstico.
+
+La v1.0 contempla inicialmente:
+
+- Linux;
+- Windows.
+
+ContinuitY diferencia entre:
+
+- evidencia original;
+- datos normalizados;
+- interpretación;
+- evaluación;
+- recomendación.
+
+Una evidencia técnica no constituye por sí sola una recomendación de
+modernización.
+
 ## Dual-Lab Engineering
 
-ContinuitY se desarrolla mediante dos entornos complementarios:
+ContinuitY se desarrolla mediante dos entornos complementarios.
 
 ### SpartanLab
 
@@ -98,8 +129,9 @@ La primera validación utiliza el caso ficticio:
 Empresa dedicada a servicios técnicos de redes de datos, CCTV y control
 de acceso.
 
-Este caso permite validar diagnóstico, gestión documental, evaluación de
-infraestructura y decisiones de modernización.
+Este caso permite validar diagnóstico, recolección de evidencia técnica,
+gestión documental, evaluación de infraestructura y decisiones de
+modernización.
 
 ## Estado del proyecto
 
@@ -128,18 +160,42 @@ infraestructura y decisiones de modernización.
 
 - aprovechar antes de reemplazar;
 - medir antes de recomendar;
+- preservar evidencia antes de interpretarla;
 - automatizar antes de introducir un agente;
 - utilizar IA únicamente cuando aporte valor demostrable;
 - mantener trazabilidad entre problema, requisito, implementación y evidencia;
 - favorecer soluciones simples, mantenibles y evolutivas;
 - proteger secretos, credenciales y datos sensibles.
 
+## Documentación principal
+
+La documentación viva de ingeniería se mantiene dentro del repositorio.
+
+Estructura principal:
+
+```text
+docs/
+├── project-management/
+│   ├── project-vision.md
+│   ├── scope-v1.md
+│   └── product-backlog.md
+├── requirements/
+│   ├── requirements-v1.0.md
+│   └── traceability-matrix.md
+├── uml/
+│   ├── README.md
+│   ├── use-cases-v0.puml
+│   └── domain-model-v0.puml
+└── architecture/
+    └── architecture-v0.md
+```
+
 ## Estado de desarrollo
 
 El proyecto se encuentra actualmente en construcción.
 
-La documentación de gestión y decisiones de ingeniería se mantiene
-versionada dentro del repositorio.
+La documentación de gestión y las decisiones de ingeniería se mantienen
+versionadas dentro del repositorio.
 
 ## Autor
 

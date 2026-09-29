@@ -1,0 +1,139 @@
+@startuml
+title ContinuitY Platform - Domain Model v0
+
+hide methods
+hide stereotypes
+
+class Company {
+    id
+    name
+    businessActivity
+    location
+}
+
+class TechnologyAssessment {
+    id
+    assessmentDate
+    assessor
+    summary
+    observations
+}
+
+class TechnologyResource {
+    id
+    resourceType
+    manufacturer
+    model
+    description
+    status
+    notes
+}
+
+class TechnologyNeed {
+    id
+    description
+    priority
+    notes
+}
+
+class TechnicalEvidence {
+    id
+    fileName
+    collectionDate
+    platform
+    evidenceVersion
+}
+
+class HardwareSnapshot {
+    hostname
+    operatingSystem
+    osVersion
+    architecture
+    cpu
+    memory
+    storage
+    network
+}
+
+class TechnicalDocument {
+    id
+    name
+    manufacturer
+    model
+    version
+    documentType
+    reference
+}
+
+class TechnologyEvaluation {
+    id
+    executionMode
+    evaluationDate
+    responseTime
+    resourceConsumption
+    qualityResult
+    estimatedCost
+    observations
+}
+
+class ModernizationRecommendation {
+    id
+    creationDate
+    recommendation
+    rationale
+}
+
+enum ResourceStatus {
+    OPERATIONAL
+    LIMITED
+    OBSOLETE
+    OUT_OF_SERVICE
+    PENDING_EVALUATION
+}
+
+enum NeedPriority {
+    LOW
+    MEDIUM
+    HIGH
+    CRITICAL
+}
+
+enum ExecutionMode {
+    LOCAL
+    CLOUD
+    HYBRID
+}
+
+Company "1" -- "0..*" TechnologyAssessment :
+has >
+
+TechnologyAssessment "1" -- "0..*" TechnologyResource :
+evaluates >
+
+TechnologyAssessment "1" -- "0..*" TechnologyNeed :
+identifies >
+
+TechnologyResource "1" -- "0..*" TechnicalEvidence :
+provides evidence >
+
+TechnicalEvidence "1" -- "0..1" HardwareSnapshot :
+produces >
+
+Company "1" -- "0..*" TechnicalDocument :
+owns >
+
+TechnologyAssessment "1" -- "0..*" TechnologyEvaluation :
+contains >
+
+TechnologyEvaluation --> ExecutionMode
+
+TechnologyResource --> ResourceStatus
+TechnologyNeed --> NeedPriority
+
+TechnologyAssessment "1" -- "0..*" ModernizationRecommendation :
+supports >
+
+TechnologyEvaluation "0..*" -- "0..*" ModernizationRecommendation :
+supports >
+
+@enduml

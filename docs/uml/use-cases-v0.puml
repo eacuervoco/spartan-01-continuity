@@ -1,0 +1,70 @@
+@startuml
+title ContinuitY Platform - Use Cases v0
+
+left to right direction
+
+actor "Usuario Evaluador" as Evaluator
+actor "Cliente" as Client
+
+rectangle "ContinuitY Platform" {
+
+    usecase "Registrar empresa" as UC01
+    usecase "Crear diagnóstico\ntecnológico" as UC02
+    usecase "Registrar recursos\ntecnológicos" as UC03
+    usecase "Registrar necesidades\ntecnológicas" as UC04
+
+    usecase "Obtener instrucciones\nde assessment" as UC05
+    usecase "Generar\nContinuitY_assessment.txt" as UC06
+    usecase "Importar evidencia\ntécnica" as UC07
+    usecase "Consultar evidencia\ntécnica" as UC08
+
+    usecase "Registrar documentación\ntécnica" as UC09
+    usecase "Consultar documentación" as UC10
+
+    usecase "Realizar consulta\nmediante IA + RAG" as UC11
+    usecase "Consultar evidencia\nde respuesta" as UC12
+
+    usecase "Registrar evaluación\nde alternativa" as UC13
+    usecase "Comparar alternativas" as UC14
+
+    usecase "Generar recomendación\nde modernización" as UC15
+    usecase "Consultar recomendación" as UC16
+}
+
+Evaluator --> UC01
+Evaluator --> UC02
+Evaluator --> UC03
+Evaluator --> UC04
+
+Client --> UC05
+Client --> UC06
+
+Evaluator --> UC07
+Evaluator --> UC08
+
+Evaluator --> UC09
+Evaluator --> UC10
+Evaluator --> UC11
+Evaluator --> UC12
+
+Evaluator --> UC13
+Evaluator --> UC14
+
+Evaluator --> UC15
+Evaluator --> UC16
+
+UC02 .> UC01 : <<include>>
+UC02 .> UC03 : <<include>>
+
+UC06 .> UC05 : <<include>>
+UC07 .> UC06 : <<extend>>
+
+UC11 .> UC10 : <<include>>
+UC12 .> UC11 : <<extend>>
+
+UC14 .> UC13 : <<include>>
+
+UC15 .> UC02 : <<include>>
+UC15 .> UC14 : <<include>>
+
+@enduml
