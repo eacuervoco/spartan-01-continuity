@@ -1,203 +1,214 @@
-# ContinuitY Platform
+# ContinuitY V3.0 — RF01 | Autenticación y persistencia PostgreSQL
 
-Modernización y continuidad tecnológica para PYMEs, basada en evidencia,
-aprovechamiento de infraestructura existente y adopción selectiva de IA.
+**Estado:** MVP RF01 funcional y validado
+**Arquitectura:** Monolito modular de tres capas
+**Tecnologías:** Python 3.12 · FastAPI · PostgreSQL 17 · Psycopg 3 · HTML5 · CSS3 · JavaScript
 
-## Visión
+## 1. Descripción
 
-ContinuitY Platform ayuda a una organización a decidir qué modernizar,
-qué recursos tecnológicos puede seguir aprovechando y dónde la
-inteligencia artificial produce una mejora medible para el negocio.
+ContinuitY es una plataforma de consultoría tecnológica asistida por inteligencia artificial, orientada a identificar oportunidades de optimización y aprovechamiento de infraestructura tecnológica en pequeñas y medianas empresas.
 
-La plataforma trata la modernización como un problema de decisión de
-ingeniería, no como una compra de tecnología.
+El **RF01 — Registro e inicio de sesión** implementa el acceso inicial a la plataforma, permitiendo crear cuentas, autenticar usuarios, administrar sesiones y consultar el contexto de acceso empresarial.
 
-## Problema
+La solución cuenta con persistencia PostgreSQL, validación de credenciales, protección de sesiones y pruebas automatizadas.
 
-Muchas pequeñas y medianas empresas poseen:
+## 2. Arquitectura
 
-- infraestructura tecnológica heterogénea;
-- equipos aún aprovechables pero no evaluados;
-- documentación técnica distribuida;
-- conocimiento difícil de consultar;
-- incertidumbre sobre cuándo usar soluciones locales, cloud o híbridas.
-
-ContinuitY busca convertir ese contexto en información estructurada,
-evidencia técnica y decisiones justificables.
-
-## Flujo objetivo
-
-Empresa  
-→ diagnóstico  
-→ captura de evidencia técnica  
-→ evaluación de recursos  
-→ organización documental  
-→ pruebas  
-→ medición  
-→ comparación  
-→ recomendación de modernización
-
-## Capacidades previstas para v1.0
-
-- diagnóstico tecnológico;
-- recolección de evidencia técnica de hardware y sistema operativo;
-- gestión de documentación técnica;
-- consulta mediante IA y RAG;
-- evaluación de alternativas local, cloud e híbrida;
-- recomendación de modernización basada en evidencia.
-
-## Enfoque de ingeniería
-
-Spartan #01 se desarrolla utilizando progresivamente:
-
-- Python;
-- FastAPI;
-- PostgreSQL;
-- Docker y Docker Compose;
-- pytest;
-- CI;
-- logging y healthchecks;
-- IA local;
-- RAG;
-- tool calling;
-- un agente acotado;
-- AWS como entorno de aprendizaje y comparación.
-
-Estas tecnologías se incorporan únicamente cuando soportan un requisito,
-reducen un riesgo o permiten demostrar una mejora medible.
-
-## Technical Assessment
-
-ContinuitY incorpora un mecanismo inicial de recolección de evidencia técnica
-sin requerir acceso remoto al equipo del cliente.
-
-El cliente recibe instrucciones compatibles con el sistema operativo
-soportado, ejecuta localmente los comandos suministrados y genera:
-
-`ContinuitY_assessment.txt`
-
-El archivo puede ser revisado por el cliente antes de ser entregado y se
-utiliza como evidencia técnica para el proceso de diagnóstico.
-
-La v1.0 contempla inicialmente:
-
-- Linux;
-- Windows.
-
-ContinuitY diferencia entre:
-
-- evidencia original;
-- datos normalizados;
-- interpretación;
-- evaluación;
-- recomendación.
-
-Una evidencia técnica no constituye por sí sola una recomendación de
-modernización.
-
-## Dual-Lab Engineering
-
-ContinuitY se desarrolla mediante dos entornos complementarios.
-
-### SpartanLab
-
-Entorno local persistente utilizado para construir, probar y operar
-componentes del sistema.
-
-### AWS
-
-Entorno cloud utilizado para laboratorios, validaciones y comparaciones
-de arquitectura.
-
-El objetivo no es construir copias idénticas, sino comparar trade-offs
-como:
-
-- costo;
-- seguridad;
-- privacidad;
-- latencia;
-- complejidad;
-- mantenibilidad;
-- operación.
-
-## Caso de estudio
-
-La primera validación utiliza el caso ficticio:
-
-**TecniRed Sabana S.A.S.**
-
-Empresa dedicada a servicios técnicos de redes de datos, CCTV y control
-de acceso.
-
-Este caso permite validar diagnóstico, recolección de evidencia técnica,
-gestión documental, evaluación de infraestructura y decisiones de
-modernización.
-
-## Estado del proyecto
-
-**Spartan #01 — ContinuitY Platform**
-
-- Estado actual: Fase 0 — Project Foundation
-- Marco de gestión: Scrum
-- Horizonte v1.0: 12 semanas
-- Versión actual: Foundation
-- Fuente de verdad: GitHub
-- Arquitectura: evolutiva y pragmática
-
-## Roadmap general
-
-| Periodo | Foco |
-|---|---|
-| Semana 1 | Project Foundation |
-| Semanas 2–3 | Backend Core |
-| Semanas 4–5 | Data + Containers |
-| Semanas 6–7 | DevOps + Cloud |
-| Semanas 8–9 | AI + RAG |
-| Semanas 10–11 | Agentic Spartan |
-| Semana 12 | Hardening + Portfolio |
-
-## Principios
-
-- aprovechar antes de reemplazar;
-- medir antes de recomendar;
-- preservar evidencia antes de interpretarla;
-- automatizar antes de introducir un agente;
-- utilizar IA únicamente cuando aporte valor demostrable;
-- mantener trazabilidad entre problema, requisito, implementación y evidencia;
-- favorecer soluciones simples, mantenibles y evolutivas;
-- proteger secretos, credenciales y datos sensibles.
-
-## Documentación principal
-
-La documentación viva de ingeniería se mantiene dentro del repositorio.
-
-Estructura principal:
+Se implementa un **monolito modular de tres capas**, aplicando programación orientada a objetos (POO), separación de responsabilidades y los patrones Repository, Service Layer y Dependency Injection.
 
 ```text
-docs/
-├── project-management/
-│   ├── project-vision.md
-│   ├── scope-v1.md
-│   └── product-backlog.md
-├── requirements/
-│   ├── requirements-v1.0.md
-│   └── traceability-matrix.md
-├── uml/
-│   ├── README.md
-│   ├── use-cases-v0.puml
-│   └── domain-model-v0.puml
-└── architecture/
-    └── architecture-v0.md
+app/
+├── api/                # Presentación: endpoints HTTP
+├── core/               # Dominio, modelos y servicios
+├── infrastructure/     # Seguridad y persistencia
+├── static/             # CSS y JavaScript
+├── templates/          # HTML
+└── main.py             # Composición de dependencias
+
+database/
+├── 001_schema.sql
+├── 002_permisos.sql
+└── 003_sesiones_revocacion.sql
+
+tests/                  # Pruebas unitarias y de integración
+scripts/                # Validaciones operativas
 ```
 
-## Estado de desarrollo
+La capa de dominio es independiente de FastAPI y PostgreSQL.
 
-El proyecto se encuentra actualmente en construcción.
+## 3. Funcionalidades implementadas
 
-La documentación de gestión y las decisiones de ingeniería se mantienen
-versionadas dentro del repositorio.
+- Registro de usuarios con persistencia PostgreSQL.
+- Normalización y unicidad del correo electrónico.
+- Almacenamiento seguro de contraseñas mediante Argon2id.
+- Inicio de sesión con tokens opacos.
+- Cookies HttpOnly, Secure en producción y SameSite=Lax.
+- Protección CSRF para cierre de sesión.
+- Control de intentos de autenticación.
+- Sesiones con expiración por inactividad de 30 minutos y límite absoluto de 8 horas.
+- Invalidación definitiva de sesiones.
+- Consulta del contexto del usuario autenticado.
+- Control de acceso empresarial con autorización restrictiva por defecto.
 
-## Autor
+**Estados de cuenta:** `ACTIVA`, `NO EXISTE` (resultado de consulta, no persistido).
 
-**Edwin A. Cuervo**  
-SpartanLab
+**Estados de sesión:** `VIGENTE`, `EXPIRADA`.
+
+## 4. Persistencia PostgreSQL
+
+El sistema permite seleccionar el almacenamiento mediante `CONTINUITY_STORAGE`:
+
+| Valor | Descripción |
+|---|---|
+| `memory` | Repositorios en memoria para pruebas |
+| `postgres` | Persistencia real mediante Psycopg 3 |
+
+### Modelo de datos
+
+- `usuarios`: datos de identificación, correo normalizado, estado y rol.
+- `credenciales`: hash Argon2id asociado al usuario.
+- `sesiones`: digest SHA-256 del token, fechas de actividad, expiración y revocación.
+
+El registro de usuario y credencial es transaccional. PostgreSQL impone restricciones de unicidad e integridad referencial.
+
+La infraestructura PostgreSQL está alojada en SpartanLab y se accede desde WSL mediante un túnel SSH, sin exponer el puerto de la base de datos directamente a la red.
+
+## 5. Instalación
+
+Desde la raíz del proyecto:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e '.[test]'
+```
+
+### Ejecución con almacenamiento en memoria
+
+```bash
+CONTINUITY_STORAGE=memory \
+CONTINUITY_ENV=development \
+python -m uvicorn app.main:app --reload
+```
+
+### Ejecución con PostgreSQL
+
+Requiere PostgreSQL configurado, el esquema SQL aplicado y el túnel SSH activo.
+
+```bash
+export CONTINUITY_STORAGE=postgres
+export CONTINUITY_ENV=development
+
+export CONTINUITY_DB_HOST=127.0.0.1
+export CONTINUITY_DB_PORT=15432
+export CONTINUITY_DB_NAME=continuity_db
+export CONTINUITY_DB_USER=continuity_app
+
+read -rs -p "Contraseña PostgreSQL: " CONTINUITY_DB_PASSWORD
+echo
+export CONTINUITY_DB_PASSWORD
+
+python -m uvicorn app.main:app \
+  --host 127.0.0.1 --port 8000
+```
+
+`CONTINUITY_ENV=development` se utiliza únicamente para pruebas locales mediante HTTP. Los despliegues reales requieren HTTPS y cookies Secure.
+
+Las migraciones SQL se ejecutan explícitamente, con una cuenta administrativa autorizada. FastAPI no crea tablas durante su arranque.
+
+## 6. Acceso y recorrido funcional
+
+Abrir:
+
+`http://127.0.0.1:8000/login`
+
+**Flujo de validación:**
+
+1. Crear una cuenta desde `/register`.
+2. Iniciar sesión desde `/login`.
+3. Acceder a `/access` y consultar el contexto.
+4. Confirmar el destino `INCORPORACION_EMPRESARIAL`, cuando no existe una membresía autorizada.
+5. Obtener el token CSRF y cerrar sesión.
+6. Verificar que una sesión invalidada no permite acceder nuevamente.
+7. Reiniciar FastAPI y comprobar que el usuario registrado continúa disponible en PostgreSQL.
+
+### Endpoints principales
+
+| Método | Endpoint | Función |
+|---|---|---|
+| POST | `/auth/register` | Registro de cuenta |
+| POST | `/auth/login` | Inicio de sesión |
+| GET | `/auth/session` | Consulta de sesión |
+| GET | `/auth/me` | Contexto del usuario |
+| GET | `/auth/csrf` | Token CSRF |
+| POST | `/auth/logout` | Cierre de sesión |
+
+## 7. Pruebas y calidad
+
+### Regresión del backend
+
+```bash
+CONTINUITY_STORAGE=memory \
+CONTINUITY_ENV=production \
+python -m pytest -q
+```
+
+**Último resultado validado:**
+
+```text
+66 passed, 1 warning in 17.03s
+```
+
+La advertencia corresponde a una deprecación de Starlette relacionada con `httpx`.
+
+### Integración PostgreSQL
+
+Las pruebas de integración utilizan la base aislada `continuity_rf01_test`.
+
+```bash
+PYTHONPATH=. python tests/test_bd03_integracion.py
+
+PYTHONPATH=. python tests/test_bd04_integracion.py
+```
+
+**Resultados verificados:**
+
+- BD-03: registro, persistencia, duplicados, integridad y rollback aprobados.
+- BD-04: sesiones, reconexión, actualización de actividad, logout irreversible y expiraciones aprobados.
+- BD-05: registro, autenticación y consulta de usuarios desde el frontend con PostgreSQL real.
+- BD-06: regresión de 66 pruebas y revisión básica de seguridad aprobadas.
+
+## 8. Seguridad
+
+Se implementan controles básicos y efectivos:
+
+- Contraseñas protegidas mediante Argon2id.
+- Consultas SQL parametrizadas.
+- Credenciales PostgreSQL mediante variables de entorno.
+- Tokens de sesión no almacenados en texto claro en PostgreSQL.
+- Protección CSRF y verificación de origen.
+- Restricciones de integridad en base de datos.
+- Acceso empresarial restrictivo por defecto.
+- Exclusión de `.env` y `cookies.txt` mediante `.gitignore`.
+
+## 9. Limitaciones del MVP
+
+- No incluye recuperación de contraseñas, OAuth ni MFA.
+- No implementa empresas y membresías reales.
+- No incluye panel empresarial funcional.
+- No incorpora agentes autónomos ni integración de inteligencia artificial en RF01.
+- No implementa monitoreo continuo ni descubrimiento automático de infraestructura.
+- La gestión avanzada de disponibilidad del túnel SSH queda fuera de esta fase.
+- La auditoría manual WCAG y las pruebas automatizadas en navegadores reales continúan pendientes.
+
+## 10. Estado y continuidad
+
+**RF01:** registro, autenticación, sesiones y contexto de acceso implementados con persistencia PostgreSQL.
+
+**Próximo paso:** cierre de versionamiento Git y continuación incremental de los requisitos funcionales de ContinuitY.
+
+---
+
+**Proyecto:** ContinuitY V3.0
+**Entorno de desarrollo:** SpartanLab
+**Principio de ingeniería:** simplicidad, modularidad, seguridad básica efectiva y validación continua.

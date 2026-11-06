@@ -39,3 +39,10 @@ logs/
 # Temporary files
 *.tmp
 *.swp
+# Cookies y sesiones locales
+cookies.txt
+*.cookie
+*.cookies
+
+# Respaldos temporales
+*.bak

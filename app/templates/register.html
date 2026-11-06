@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Accede a ContinuitY, plataforma de evaluación y optimización de infraestructura tecnológica.">
+  <title>Crear cuenta | ContinuitY</title>
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/login.css">
+  <script src="/static/js/common.js" defer></script>
+  <script src="/static/js/register.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="site-header">
+      <a class="brand" href="/login" aria-label="ContinuitY, página de acceso">
+        <span class="brand-icon" aria-hidden="true">C<span class="brand-dot"></span></span>
+        <span>Continuit<span class="brand-y">Y</span></span>
+      </a>
+      <span class="brand-caption">SPARTAN SYSTEMS LAB</span>
+    </header>
+
+    <main class="main-layout" id="contenido">
+      <section class="signin" aria-labelledby="page-title">
+        <div class="signin-inner">
+          <p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span> TU ESPACIO DE EVOLUCIÓN DIGITAL</p>
+          <h1 id="page-title">Comienza a <span class="highlight">evolucionar.</span></h1>
+          <p class="intro">Crea tu cuenta personal para dar el primer paso hacia nuevas oportunidades.</p>
+
+          <form id="register-form" class="login-form" method="post">
+            <div class="field"><label for="nombre">Nombre completo</label><input id="nombre" name="nombre" autocomplete="name" minlength="1" maxlength="120" required></div>
+            <div class="field"><label for="email">Correo electrónico</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" inputmode="email" required></div>
+            <div class="field"><label for="password">Contraseña (mínimo 12 caracteres)</label><div class="password-field"><input id="password" name="password" type="password" autocomplete="new-password" minlength="12" maxlength="1024" required><button class="visibility-toggle" type="button" id="show-password" aria-label="Mostrar contraseña" aria-pressed="false">Mostrar</button></div></div>
+            <div class="field"><label for="confirmacion_password">Confirmar contraseña</label><input id="confirmacion_password" name="confirmacion_password" type="password" autocomplete="new-password" required></div>
+            <button class="primary-button" id="submit-register" type="submit">Crear cuenta <span aria-hidden="true">→</span></button>
+            <p class="form-feedback" id="form-feedback" role="status" aria-live="polite" tabindex="-1"></p>
+          </form>
+          <p class="signup-copy">¿Ya tienes cuenta? <a href="/login">Iniciar sesión</a></p>
+          <div class="trust-line"><span aria-hidden="true">◈</span> Tu información, protegida desde el primer paso</div>
+        </div>
+      </section>
+
+      <aside class="motivation" aria-label="Qué puedes lograr con ContinuitY">
+        <div class="motivation-content">
+          <div class="tag"><span class="tag-dot" aria-hidden="true"></span> CONVIERTE POTENCIAL EN VALOR</div>
+          <div class="graphic" aria-hidden="true">
+            <div class="graphic-halo halo-one"></div><div class="graphic-halo halo-two"></div>
+            <div class="graphic-card card-back"><div class="bar long"></div><div class="bar short"></div><div class="bar medium"></div></div>
+            <div class="graphic-card card-front"><span class="graphic-symbol">↗</span><div class="graphic-card-label">OPORTUNIDADES</div><div class="graphic-card-number">+ Potencial</div><div class="progress-track"><span></span></div></div>
+            <div class="graphic-spark spark-one">✦</div><div class="graphic-spark spark-two">✦</div>
+          </div>
+          <h2>Lo que hoy tienes,<br>puede llevarte <em>más lejos.</em></h2>
+          <p>Diagnostica. Descubre. Evoluciona. Cada paso te acerca a una infraestructura más eficiente.</p>
+          <div class="motivation-steps" aria-label="Etapas futuras de tu recorrido">
+            <span class="step active">01 <strong>Conecta</strong></span>
+            <span class="step">02 <strong>Descubre</strong></span>
+            <span class="step">03 <strong>Evoluciona</strong></span>
+          </div>
+        </div>
+      </aside>
+    </main>
+    <footer class="site-footer"><span>© ContinuitY · Spartan Systems Lab</span><span>Diseñado para avanzar con propósito.</span></footer>
+  </div>
+</body>
+</html>
