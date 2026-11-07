@@ -1,7 +1,19 @@
 """Contratos (Protocol): dominio independiente de infraestructura concreta."""
 from typing import Protocol, runtime_checkable
 from uuid import UUID
-from .models import Credencial, Sesion, Usuario
+from .models import Credencial, Empresa, Sesion, Usuario
+
+
+@runtime_checkable
+class CompanyRepository(Protocol):
+    def buscar_por_usuario(self, usuario_id: UUID) -> Empresa | None: ...
+    def crear(self, empresa: Empresa) -> None:
+        """Crear sin sobrescribir, como operación indivisible.
+
+        Si el usuario ya tiene empresa, lanzar ValueError("Empresa duplicada")
+        sin cambios, incluso ante creaciones simultáneas.
+        """
+        ...
 
 
 @runtime_checkable

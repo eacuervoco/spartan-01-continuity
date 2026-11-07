@@ -1,7 +1,7 @@
 """Almacenamiento temporal para pruebas y fase backend; no apto para producción."""
 from threading import RLock
 from uuid import UUID
-from app.core.models import Credencial, Sesion, Usuario
+from app.core.models import Credencial, Empresa, Sesion, Usuario
 
 
 class MemoryUserRepository:
@@ -47,6 +47,22 @@ class MemorySessionRepository:
 
     def invalidar(self, token: str) -> None:
         self._sesiones.pop(token, None)
+
+
+class MemoryCompanyRepository:
+    def __init__(self) -> None:
+        self._lock = RLock()
+        self._empresas: dict[UUID, Empresa] = {}
+
+    def buscar_por_usuario(self, usuario_id: UUID) -> Empresa | None:
+        with self._lock:
+            return self._empresas.get(usuario_id)
+
+    def crear(self, empresa: Empresa) -> None:
+        with self._lock:
+            if empresa.usuario_id in self._empresas:
+                raise ValueError("Empresa duplicada")
+            self._empresas[empresa.usuario_id] = empresa
 
 
 class NoMembershipLookup:

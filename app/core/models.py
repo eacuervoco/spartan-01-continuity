@@ -1,4 +1,4 @@
-"""Entidades y estados del dominio RF01, independientes de HTTP y BD."""
+"""Entidades y estados del dominio, independientes de HTTP y BD."""
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from enum import StrEnum
@@ -35,6 +35,39 @@ class Usuario:
             raise ValueError("Nombre y correo son obligatorios")
         if not _utc_aware(self.creado_en):
             raise ValueError("creado_en requiere zona horaria")
+
+
+@dataclass(frozen=True, slots=True)
+class Empresa:
+    id: UUID
+    usuario_id: UUID
+    nombre: str
+    ciudad: str
+    creado_en: datetime
+    nit: str | None = None
+    sector: str | None = None
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.id, UUID) or not isinstance(self.usuario_id, UUID):
+            raise ValueError("Los identificadores de empresa y usuario deben ser UUID")
+        for campo, limite, obligatorio in (
+            ("nombre", 150, True), ("ciudad", 100, True),
+            ("nit", 20, False), ("sector", 100, False),
+        ):
+            valor = getattr(self, campo)
+            if valor is None and not obligatorio:
+                continue
+            if not isinstance(valor, str):
+                raise ValueError(f"{campo} debe ser texto")
+            valor = valor.strip()
+            if obligatorio and not valor:
+                raise ValueError(f"{campo} es obligatorio")
+            if len(valor) > limite:
+                raise ValueError(f"{campo} admite máximo {limite} caracteres")
+            object.__setattr__(self, campo, valor if obligatorio else valor or None)
+        if not isinstance(self.creado_en, datetime) or not _utc_aware(self.creado_en):
+            raise ValueError("creado_en requiere zona horaria")
+        object.__setattr__(self, "creado_en", self.creado_en.astimezone(timezone.utc))
 
 
 @dataclass(frozen=True, slots=True)
