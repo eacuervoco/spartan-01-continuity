@@ -21,6 +21,10 @@ from app.infrastructure.security import Argon2PasswordHasher
 from app.infrastructure.postgres_connection import nueva_conexion
 from app.infrastructure.postgres_users import PostgresUserRepository
 from app.infrastructure.postgres_sessions import PostgresSessionRepository
+from app.api.companies import router as companies_router
+from app.core.company_service import EmpresaService
+from app.infrastructure.memory import MemoryCompanyRepository
+from app.infrastructure.postgres_companies import PostgresCompanyRepository
 
 
 def create_app() -> FastAPI:
@@ -30,13 +34,16 @@ def create_app() -> FastAPI:
     if storage == "postgres":
         app.state.usuarios = PostgresUserRepository(nueva_conexion)
         app.state.sesiones = PostgresSessionRepository(nueva_conexion)
+        app.state.empresas = PostgresCompanyRepository(nueva_conexion)
     elif storage == "memory":
         app.state.usuarios = MemoryUserRepository()
         app.state.sesiones = MemorySessionRepository()
+        app.state.empresas = MemoryCompanyRepository()
     else:
         raise ValueError("CONTINUITY_STORAGE inválido")
 
     hasher = Argon2PasswordHasher()
+    app.state.empresa_service = EmpresaService(app.state.empresas)
 
     app.state.registro_service = RegistroService(app.state.usuarios, hasher)
     # Hash ficticio calculado al iniciar la aplicación para mitigar enumeración por tiempo.
@@ -92,6 +99,7 @@ def create_app() -> FastAPI:
     app.include_router(router)
     app.include_router(session_router)
     app.include_router(access_router)
+    app.include_router(companies_router)
     return app
 
 
