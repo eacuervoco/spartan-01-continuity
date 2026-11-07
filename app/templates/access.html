@@ -9,6 +9,7 @@
   <title>Mi acceso | ContinuitY</title>
   <link rel="stylesheet" href="/static/css/base.css">
   <link rel="stylesheet" href="/static/css/login.css">
+  <link rel="stylesheet" href="/static/css/company.css">
   <script src="/static/js/common.js" defer></script>
   <script src="/static/js/access.js" defer></script>
 </head>
@@ -27,7 +28,7 @@
         <div class="signin-inner">
           <p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span> TU ESPACIO DE EVOLUCIÓN DIGITAL</p>
           <h1 id="page-title">Tu próximo paso en <span class="highlight">ContinuitY.</span></h1>
-          <p class="intro">Tu identidad está verificada. Estamos preparando tu experiencia empresarial.</p>
+          <p class="intro">Consulta tu acceso y registra los datos de tu empresa.</p>
 
           <section class="account-panel" aria-labelledby="account-title">
             <h2 id="account-title">Estado de tu acceso</h2>
@@ -36,9 +37,33 @@
               <p>Bienvenido, <strong id="account-name"></strong>.</p>
               <p id="account-message"></p>
               <p class="form-note" id="account-email"></p>
+              <button class="primary-button" id="show-company" type="button" aria-controls="company-section" aria-expanded="false">Mi empresa</button>
               <button class="primary-button" id="logout" type="button">Cerrar sesión</button>
             </div>
             <p class="form-feedback" id="form-feedback" role="alert" hidden></p>
+          </section>
+          <section class="account-panel company-panel" id="company-section" aria-labelledby="company-title" hidden>
+            <h2 id="company-title" tabindex="-1">Mi empresa</h2>
+            <p id="company-loading" role="status" hidden>Consultando tu empresa…</p>
+            <p class="form-feedback" id="company-feedback" role="status" aria-live="polite" tabindex="-1" hidden></p>
+            <button id="company-retry" type="button" hidden>Volver a consultar</button>
+            <form id="company-form" class="login-form" method="post" aria-describedby="company-note" hidden>
+              <p class="form-note" id="company-note">Nombre y ciudad son obligatorios. Puedes registrar una sola empresa.</p>
+              <div class="field"><label for="company-name">Nombre de empresa / razón social (obligatorio)</label><input id="company-name" name="nombre" type="text" autocomplete="organization" maxlength="150" required></div>
+              <div class="field"><label for="company-city">Ciudad / municipio (obligatorio)</label><input id="company-city" name="ciudad" type="text" autocomplete="address-level2" maxlength="100" required></div>
+              <div class="field"><label for="company-nit">NIT (opcional)</label><input id="company-nit" name="nit" type="text" maxlength="20"></div>
+              <div class="field"><label for="company-sector">Sector económico (opcional)</label><input id="company-sector" name="sector" type="text" maxlength="100"></div>
+              <button class="primary-button" id="submit-company" type="submit">Registrar empresa</button>
+            </form>
+            <div id="company-details" hidden>
+              <h3 id="company-details-title" tabindex="-1">Empresa registrada</h3>
+              <dl class="company-details">
+                <dt>Nombre / razón social</dt><dd id="company-value-name"></dd>
+                <dt>Ciudad / municipio</dt><dd id="company-value-city"></dd>
+                <dt>NIT</dt><dd id="company-value-nit"></dd>
+                <dt>Sector económico</dt><dd id="company-value-sector"></dd>
+              </dl>
+            </div>
           </section>
           <div class="trust-line"><span aria-hidden="true">◈</span> Tu información, protegida desde el primer paso</div>
         </div>
