@@ -63,4 +63,4 @@ with TemporaryDirectory(prefix='continuity-portal-') as temporary:
     for original, view in [('usuarios','RF01'), ('empresas','RF02'), ('credenciales','RF01'), ('sesiones','RF01')]:
         assert f'public.{original}' in '\n'.join(p.read_text() for p in (DOCS.parent/'database').glob('*.sql'))
     print(f'Portal: {len(snapshots)} rendered snapshots checked; relative resources, labels, H1, SVG and JS syntax OK.')
-    print('DOM simulated. Visual/mobile/WCAG checks in a real browser remain pending.')
+    print('DOM simulado: este comando no evalúa renderizado, móvil ni WCAG; browser-activity4.py verifica el navegador por separado.')
