@@ -1,0 +1,54 @@
+✔ RF01/RF02: validation, normalized duplicates, expiry, ownership and read-after-login (11.724152ms)
+✖ all six areas and twelve academic sheets render with one H1 (15.042749ms)
+✖ form handlers complete registration, login, company and logout (7.423983ms)
+✖ evaluation starts empty, persists, reloads, escapes stored input and exports/prints (2.1279ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 1
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 54.919189
+
+✖ failing tests:
+
+test at docs/checks/portal.test.cjs:66:1
+✖ all six areas and twelve academic sheets render with one H1 (15.042749ms)
+  AssertionError [ERR_ASSERTION]: C. Matriz
+      at TestContext.<anonymous> (/home/edwin/spartanlab/continuity/docs/checks/portal.test.cjs:70:168)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/checks/portal.test.cjs:76:1
+✖ form handlers complete registration, login, company and logout (7.423983ms)
+  TypeError: Cannot read properties of undefined (reading 'click')
+      at TestContext.<anonymous> (/home/edwin/spartanlab/continuity/docs/checks/portal.test.cjs:77:72)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at docs/checks/portal.test.cjs:88:1
+✖ evaluation starts empty, persists, reloads, escapes stored input and exports/prints (2.1279ms)
+  TypeError: Cannot read properties of undefined (reading 'value')
+      at TestContext.<anonymous> (/home/edwin/spartanlab/continuity/docs/checks/portal.test.cjs:89:90)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

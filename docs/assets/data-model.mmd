@@ -1,0 +1,34 @@
+%% Diseño RF01/RF02. Esquema definido por database/001,003,004. Sin valores sensibles.
+erDiagram
+    usuarios ||--o| credenciales : "posee"
+    usuarios ||--o{ sesiones : "inicia"
+    usuarios ||--o| empresas : "registra"
+    usuarios {
+        UUID id PK
+        VARCHAR_120 nombre
+        TEXT email_normalizado UK
+        TIMESTAMPTZ creado_en
+        TEXT estado "ACTIVA"
+        TEXT rol "CLIENTE"
+    }
+    credenciales {
+        UUID usuario_id PK,FK
+        TEXT password_hash "sin valores"
+    }
+    sesiones {
+        CHAR_64 token_digest PK "sin valores"
+        UUID usuario_id FK
+        TIMESTAMPTZ creado_en
+        TIMESTAMPTZ expira_en
+        TIMESTAMPTZ ultima_actividad_en
+        TIMESTAMPTZ revocada_en "nullable"
+    }
+    empresas {
+        UUID id PK
+        UUID usuario_id FK,UK
+        VARCHAR_150 nombre
+        VARCHAR_100 ciudad
+        VARCHAR_20 nit "nullable"
+        VARCHAR_100 sector "nullable"
+        TIMESTAMPTZ creado_en
+    }

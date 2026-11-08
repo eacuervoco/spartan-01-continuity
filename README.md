@@ -194,7 +194,7 @@ Se implementan controles básicos y efectivos:
 ## 9. Limitaciones del MVP
 
 - No incluye recuperación de contraseñas, OAuth ni MFA.
-- No implementa empresas y membresías reales.
+- RF02 implementa registro y consulta de una empresa por usuario. Las membresías empresariales siguen sin implementarse.
 - No incluye panel empresarial funcional.
 - No incorpora agentes autónomos ni integración de inteligencia artificial en RF01.
 - No implementa monitoreo continuo ni descubrimiento automático de infraestructura.
@@ -212,3 +212,32 @@ Se implementan controles básicos y efectivos:
 **Proyecto:** ContinuitY V3.0
 **Entorno de desarrollo:** SpartanLab
 **Principio de ingeniería:** simplicidad, modularidad, seguridad básica efectiva y validación continua.
+
+## 11. Portal académico V3.0 · RF01 y RF02
+
+El [portal estático](docs/index.html) presenta exclusivamente RF01 — Registro, autenticación y gestión de sesiones y RF02 — Registro y asociación de empresa. Cada ficha contiene exactamente seis apartados: requisito, historia de usuario, matriz de aceptación, ciclo de vida, prototipo interactivo y evaluación. El diseño PostgreSQL se integra en D de ambos RF; los controles de seguridad, en D de RF01. Se conserva la identidad visual del frontend, sin frameworks ni dependencias nuevas.
+
+El MVP de ContinuitY tiene previsto alcanzar el diagnóstico técnico de infraestructura tecnológica y la interacción con un modelo de inteligencia artificial, para identificar riesgos, activos subutilizados y oportunidades de optimización. RF01 y RF02 proporcionan la base de identidad y registro empresarial. El diagnóstico y la integración de IA pertenecen a incrementos posteriores y no se consideran implementados en esta entrega.
+
+RF02 está integrado en `main`, en `1f858c0`. Las cifras de pruebas anteriores de este README y `README_RF01.md` pertenecen al cierre histórico de RF01. Las [fuentes vigentes](docs/evidence/sources.md) distinguen documentos históricos de implementación. El [registro actual](docs/evidence/revision.md) conserva resultados, advertencias y omisiones: 131 pruebas pytest aprobadas y 8 PostgreSQL omitidas; 19 pruebas JS del frontend aprobadas. Los scripts manuales BD-03/BD-04 no fueron ejecutados por pytest.
+
+Para consultar localmente:
+
+```bash
+python3 -m http.server 8080 --directory docs
+```
+
+Abrir `http://localhost:8080`. Para comprobar el alcance vigente:
+
+```bash
+python3 docs/checks/validate-rf01-rf02.py
+node tests/frontend_rf02.test.cjs
+.venv/bin/python -m pytest -ra
+git diff --check
+```
+
+Las comprobaciones antiguas `docs/checks/portal.test.cjs` y `validate.py` se conservan intactas: esperan doce fichas, siete apartados y rutas retiradas; sus fallos se registran, no se ocultan. La validación vigente está en archivos nuevos y comprueba el alcance pedido, el flujo simulado, evaluación local, rutas relativas, labels, H1 y SVG. El DOM simulado no sustituye revisión visual ni WCAG.
+
+GitHub Pages: Settings → Pages → Build and deployment → Deploy from a branch → `main` → `/docs` → Save. `docs/.nojekyll`, assets locales y navegación por fragmentos permiten servir el portal bajo la ruta del repositorio. Tras revisar y autorizar commit y push, publicar estos cambios en `main` y consultar la URL que Pages devuelva. En esta revisión no se hicieron commits, fusiones ni push, ni se verificó o cambió la configuración remota de Pages.
+
+La demo no llama a APIs ni PostgreSQL. Usa datos ficticios y una clave pública de práctica de solo lectura; permite provocar casos inválidos sin solicitar contraseñas reales. Su información desaparece al recargar. Las evaluaciones docentes empiezan Sin evaluar, se guardan solo en el navegador y permiten descargar JSON e imprimir. Persistencia PostgreSQL, revisión visual/móvil, accesibilidad manual y evaluación docente quedan pendientes. No hay simulación de diagnóstico ni IA.

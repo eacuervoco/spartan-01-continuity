@@ -1,0 +1,27 @@
+✔ empresa oculta y sin consulta hasta seleccionarla; 200 muestra texto literal (29.480656ms)
+✔ 404 abre formulario; 201 usa cookies, CSRF, normaliza y confirma (4.299214ms)
+✔ espacios y longitud inválida impiden enviar y se pueden corregir (10.327017ms)
+✔ límites inclusivos y opcionales completos se envían (6.645381ms)
+✔ bloquea envíos simultáneos durante petición pendiente (6.781492ms)
+✔ 409 consulta empresa existente (4.228382ms)
+✔ POST 401 muestra mensaje controlado (5.445735ms)
+✔ POST 403 muestra mensaje controlado (3.617026ms)
+✔ POST 422 muestra mensaje controlado (4.2101ms)
+✔ POST 500 muestra mensaje controlado (7.60592ms)
+✔ GET 401 nunca abre formulario (3.599126ms)
+✔ GET 403 nunca abre formulario (3.366051ms)
+✔ GET 422 nunca abre formulario (3.940364ms)
+✔ GET 500 nunca abre formulario (4.113233ms)
+✔ CSRF 401 impide POST (3.684029ms)
+✔ CSRF 403 impide POST (8.109305ms)
+✔ CSRF 500 impide POST (3.60353ms)
+✔ error de red en consulta permite reintentar sin ofrecer registro (2.873577ms)
+✔ respuesta POST perdida obliga a consultar y recupera empresa guardada (3.773813ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 157.355076

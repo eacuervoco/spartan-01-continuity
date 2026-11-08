@@ -1,0 +1,14 @@
+✔ alcance exclusivo: dos RF, seis apartados y sin rutas académicas adicionales (23.543312ms)
+✔ prototipo: validaciones, sesión, propiedad, duplicidad y persistencia solo en memoria (8.845825ms)
+✔ evaluación: escape, guardado, descarga, impresión y almacenamiento denegado (16.547294ms)
+✔ matrices referencian archivos y funciones reales, con estados limitados a la evidencia (4.545751ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 72.28795
+Portal: 14 rendered snapshots checked; relative resources, labels, H1, SVG and JS syntax OK.
+DOM simulated. Visual/mobile/WCAG checks in a real browser remain pending.

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="570" viewBox="0 0 1000 570" role="img" aria-labelledby="title desc">
+  <title id="title">RF01/RF02 — Modelo entidad-relación del esquema SQL</title>
+  <desc id="desc">Usuarios tiene cero o una credencial, cero o muchas sesiones y cero o una empresa. Cada fila dependiente pertenece a un usuario. Representación local del archivo data-model.mmd; solo nombres de columnas.</desc>
+  <defs><style>text{font-family:system-ui,sans-serif;fill:#202c35;font-size:15px}.head{fill:#fff;font-weight:700;font-size:18px}.note{font-size:13px;fill:#476454}.box{fill:#fff;stroke:#a7c8b3;stroke-width:2}.bar{fill:#14653f}.rel{fill:none;stroke:#14653f;stroke-width:2.5}.key{font-weight:700}</style></defs>
+  <rect width="1000" height="570" fill="#f8faf8"/>
+  <path class="rel" d="M310 140H640M310 250H500V320H640M155 290V400H640"/>
+  <text x="332" y="126" class="note">1 — posee — 0..1</text>
+  <text x="330" y="238" class="note">1 — inicia — 0..N</text>
+  <text x="290" y="388" class="note">1 — registra — 0..1</text>
+  <rect x="25" y="50" width="285" height="240" rx="10" class="box"/><path d="M35 50H300Q310 50 310 60V95H25V60Q25 50 35 50" class="bar"/>
+  <text x="43" y="79" class="head">usuarios · RF01</text>
+  <text x="43" y="122" class="key">PK id · UUID</text><text x="43" y="151">nombre · VARCHAR(120)</text><text x="43" y="180">UK email_normalizado · TEXT</text><text x="43" y="209">creado_en · TIMESTAMPTZ</text><text x="43" y="238">estado · ACTIVA</text><text x="43" y="267">rol · CLIENTE</text>
+  <rect x="640" y="20" width="335" height="145" rx="10" class="box"/><path d="M650 20H965Q975 20 975 30V65H640V30Q640 20 650 20" class="bar"/><text x="658" y="49" class="head">credenciales · RF01</text>
+  <text x="658" y="92" class="key">PK, FK usuario_id · UUID</text><text x="658" y="121">password_hash · TEXT</text><text x="658" y="148" class="note">ON DELETE CASCADE · sin valores</text>
+  <rect x="640" y="185" width="335" height="175" rx="10" class="box"/><path d="M650 185H965Q975 185 975 195V230H640V195Q640 185 650 185" class="bar"/><text x="658" y="214" class="head">sesiones · RF01</text>
+  <text x="658" y="255" class="key">PK token_digest · CHAR(64)</text><text x="658" y="281" class="key">FK usuario_id · UUID</text><text x="658" y="307" class="note">creado_en · expira_en · ultima_actividad_en</text><text x="658" y="332" class="note">revocada_en (nullable) · CASCADE</text>
+  <rect x="640" y="380" width="335" height="175" rx="10" class="box"/><path d="M650 380H965Q975 380 975 390V425H640V390Q640 380 650 380" class="bar"/><text x="658" y="409" class="head">empresas · RF02</text>
+  <text x="658" y="449" class="key">PK id · FK, UK usuario_id · UUID</text><text x="658" y="476">nombre (150) · ciudad (100)</text><text x="658" y="502">nit (20), sector (100) · opcionales</text><text x="658" y="529" class="note">creado_en · TIMESTAMPTZ · RESTRICT</text>
+  <text x="25" y="465" class="note">PK: clave primaria · FK: clave foránea</text><text x="25" y="489" class="note">UK: unicidad · 0..1: opcional, máximo una fila</text><text x="25" y="513" class="note">0..N: cero o muchas filas</text><text x="25" y="547" class="note">Fuente: database/001_schema.sql + 003 + 004</text>
+</svg>
